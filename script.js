@@ -38,24 +38,20 @@ var RecipeApp = function () {
     var createIngredients = function(ingName, recipeId){
         var ingredient = {
             name: ingName,
-            //id: ingId,
         };
-
         //ingId ++;
-
-        for (var i = 0; i < array.length; i++) {
+        for (var i = 0; i < recipes.length; i++) {
             if (recipeId == recipes[i].id) {
                 recipes[i].ingredients.push(ingredient);
             }
         }
+        console.log(recipes);
     };
 
 
 /* ------------------------------------------------------------*/
     var _getIngredients = function(recipe){
-        for (var i = 0; i < array.length; i++) {
-            array[i]
-        }
+
         return "";
     };
 
@@ -82,7 +78,7 @@ var RecipeApp = function () {
             var recipe = recipes[i];
 
             //return HTML for all ingredients
-            var ingredients = _getIngredients(); //add code
+            var ingredients = _getIngredients(); //add code // Didn't do the _getIngredients function to show each render the ingredients on the html 
 
             $recipes.append(
                 '<div class="recipe col-md-6  offset-md-3 img-fluid shadow" data-id="' + recipe.id + '">' +
@@ -133,12 +129,12 @@ $('.add-recipe').on('click', function(){
 
 // Add & Render comment from spacebook
 $('.recipes').on('click', '#basic-addon3', function () {
-    var $ingName = $(this).siblings('#basic-url').val();
-    var $ingId = $(this).closest('.post').data().id;
+    var $ingName = $(this).closest('.input-group-prepend').siblings('#basic-url').val();
+    var $recipeId = $(this).closest('.recipe').data().id;
 
 
-    app.createIngredients($ingName, $ingId);
-    //app.renderComments();
-
-    $('.comment-text').val('');
+    app.createIngredients($ingName, $recipeId);
+    app.renderRecipes();
+    $(this).closest('.input-group-prepend').siblings('#basic-url').val('');
+    //$('#basic-url').val('');
 });
