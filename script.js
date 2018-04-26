@@ -48,8 +48,9 @@ var RecipeApp = function () {
 
 
     };
-
-    var _getIngredients = function (recipe) {
+// The getIngredients function should return a string with the Ingredients HTML. 
+    var _getIngredients = function (recipe) { // You made a function to get recipe by ID. The function is great but the name should change.
+        
         //add code
         for (var i = 0; i < recipes.length; i++) {
             if (recipes[i].id === recipe) {
@@ -71,6 +72,7 @@ var RecipeApp = function () {
             var ingredients = _getIngredients(recipe); //add code
             var ingredientsRend = '<li>' + ingredients + '</li>';
             //**************** STUCK HERE***********  trying to render the ingredients, it renders an LI of "undefined"
+            //- The problem is that the get ingredients does the worng thing. 
             $recipes.append(
                 '<div class="recipe col-md-6  offset-md-3 img-fluid shadow" data-id="' + recipe.id + '">' +
                 '<h4 class="text-capitalize font-italic text-center">' + recipe.name + '</h4>' +
