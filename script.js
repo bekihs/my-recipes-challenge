@@ -44,7 +44,7 @@ var RecipeApp = function() {
 
         var $clickedPost = $(currentBtn).closest('.recipe');
         var id = $clickedPost.data().id;
-
+ /// Id and index are not the same thing!
 
         let ingredient = { name: ingredientN };
 
@@ -71,6 +71,7 @@ var RecipeApp = function() {
             //return HTML for all ingredients
             var ingredients = _getIngredients(); //add code
             // debugger
+            // The loop should have been a part of the getIngredients function 
             for (let z = 0; z < recipes[i].length; z++) {
                 ingredients = recipes[i].ingredients[z]
             }
