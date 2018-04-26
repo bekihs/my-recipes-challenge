@@ -94,7 +94,7 @@ var RecipeApp = function () {
     $('.recipes row').on('click','add-ingredients input-group-text', function () {
         var ingredientsName=$(this).closest('div').find('.ingredientName').val();
         var addToRespNumber=_findRespById($(this).closest('.add-ingredients input-group-text').data().id);
-        app.createIngredients(ingredientsName,addToRespNumber);
+        app.createIngredients(ingredientsName,addToRespNumber); 
         app.renderPosts();
       });
 
@@ -126,6 +126,9 @@ $('.add-recipe').on('click', function(){
 var recipes = [];
 
 /////event add ingredient
+//'.add-ingredients' does not exist at this point. instead write it like this
+//$('.recipes').on('click', '.add-ingredients', function(){})
+// .recipes exists from the beginning 
 $('add-ingredients input-group-text').on('click', function(){
     //collect input text
     var name = $('#recipe-name').val(); 
