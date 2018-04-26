@@ -1,14 +1,15 @@
 var RecipeApp = function () {
 
     var recipes = [
-        // { 
-        //     name: 'Best Chicken Soup!', 
+        // {
+        //     name: 'Best Chicken Soup!',
         //     image: 'https://static01.nyt.com/images/2016/11/29/dining/recipelab-chick-noodle-still/recipelab-chick-noodle-still-master675.jpg',
         //     ingredients: [
         //         { name: 'whole chicken' },
         //         { name: 'medium carrots'},
         //         { name: 'onions' },
-        //     ] 
+        //     ],
+        //      id: id,
         // }
     ];
 
@@ -23,25 +24,54 @@ var RecipeApp = function () {
     var createRecipe = function(name, image){
         var recipe = {
             name: name,
-            image: image, 
+            image: image,
             ingredients: [],
             id: recId
         };
 
-        //keeps recipe ids unique 
-        recId ++; 
+        //keeps recipe ids unique
+        recId ++;
 
         recipes.push(recipe);
     };
 
-    var createIngredients = function(){
-        //add code
+    var createIngredients = function(ingName, recipeId){
+        var ingredient = {
+            name: ingName,
+            //id: ingId,
+        };
+
+        //ingId ++;
+
+        for (var i = 0; i < array.length; i++) {
+            if (recipeId == recipes[i].id) {
+                recipes[i].ingredients.push(ingredient);
+            }
+        }
     };
 
+
+/* ------------------------------------------------------------*/
     var _getIngredients = function(recipe){
-        //add code
+        for (var i = 0; i < array.length; i++) {
+            array[i]
+        }
         return "";
     };
+
+    var createPost = function (text) {
+        var post = {
+            text: text,
+            id: currentId,
+            comments: []
+        }
+
+        currentId += 1;
+        posts.push(post);
+        console.log(posts);
+    }
+/* ------------------------------------------------------------*/
+
 
     var renderRecipes = function () {
         //empty recipes div
@@ -55,17 +85,18 @@ var RecipeApp = function () {
             var ingredients = _getIngredients(); //add code
 
             $recipes.append(
-                '<div class="recipe col-md-6  offset-md-3 img-fluid shadow" data-id="' + recipe.id + '">' + 
+                '<div class="recipe col-md-6  offset-md-3 img-fluid shadow" data-id="' + recipe.id + '">' +
                     '<h4 class="text-capitalize font-italic text-center">' + recipe.name + '</h4>' +
                     '<img class="recipe-img" src="' + recipe.image + '"/>' +
                     '<hr>' +
-                    '<h5 class="font-italic font-bold text-center">ingredients</h5>' +
+                    '<h5 class="font-italic font-bold text-center">Ingredients</h5>' +
+
                     '<div class="input-group mb-3">' +
                         '<div class="input-group-prepend">' +
                             '<span class="add-ingredients input-group-text" id="basic-addon3">Add Ingredients</span>' +
-                        '</div>' + 
+                        '</div>' +
                         '<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">' +
-                        
+
                     '</div>' +
                     '<ul class="ingredients">' + ingredients + '</ul>'+
                 '</div>'
@@ -76,7 +107,7 @@ var RecipeApp = function () {
     return {
         createRecipe: createRecipe,
         renderRecipes: renderRecipes,
-        // createIngredients: createIngredients
+        createIngredients: createIngredients,
     }
 };
 
@@ -94,5 +125,20 @@ $('.add-recipe').on('click', function(){
     //add recipe to array and render
     app.createRecipe(name, image);
     app.renderRecipes();
+
+    $('#recipe-name').val("");
+    $('#recipe-image').val("");
 });
 
+
+// Add & Render comment from spacebook
+$('.recipes').on('click', '#basic-addon3', function () {
+    var $ingName = $(this).siblings('#basic-url').val();
+    var $ingId = $(this).closest('.post').data().id;
+
+
+    app.createIngredients($ingName, $ingId);
+    //app.renderComments();
+
+    $('.comment-text').val('');
+});
